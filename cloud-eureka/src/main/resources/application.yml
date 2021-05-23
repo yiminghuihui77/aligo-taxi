@@ -1,0 +1,22 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: cloud-eureka
+
+# eureka
+eureka:
+  instance:
+    hostname: localhost
+  server:
+    #关闭自我保护
+    enable-self-preservation: false
+  client:
+    #表示是否将自己注册到Eureka Server,默认为true
+    register-with-eureka: false
+    # 表示是否从Eureka Server中获取注册信息，默认为true
+    fetch-registry: false
+    service-url:
+      #与Eureka Server交互的地址，多个地址使用，分隔
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
