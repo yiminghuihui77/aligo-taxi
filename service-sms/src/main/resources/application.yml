@@ -8,6 +8,7 @@ spring:
 eureka:
   instance:
     hostname: service-sms
+    prefer-ip-address: true
   client:
     service-url:
       defaultZone: http://eurekaOne:8888/eureka/

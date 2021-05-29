@@ -9,6 +9,7 @@ spring:
 eureka:
   instance:
     hostname: localhost
+    prefer-ip-address: true
   server:
     #关闭自我保护
     enable-self-preservation: false

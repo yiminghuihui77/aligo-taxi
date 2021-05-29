@@ -27,6 +27,7 @@ spring:
 eureka:
   instance:
     hostname: service-verification-code
+    prefer-ip-address: true
   client:
     service-url:
       defaultZone: http://eurekaOne:8888/eureka/

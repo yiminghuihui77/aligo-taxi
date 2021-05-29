@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author minghui.y
@@ -25,20 +23,12 @@ public class SendVerifyCodeController {
     @Resource
     private VerificationCodeFeignService verificationCodeFeignService;
 
-    @Autowired
-    private RestTemplate restTemplate;
-
 
     @GetMapping("/getVerifyCode/{identity}/{phoneNumber}")
     public String getVerifyCode( @PathVariable("identity") int identity,
                                  @PathVariable("phoneNumber") String phoneNumber) {
 
         ResponseResult<VerifyCodeResponse> result = verificationCodeFeignService.getVerificationCode( identity, phoneNumber );
-
-//        Map<String, Object> paramMap = new HashMap<>();
-//        paramMap.put( "identity", identity );
-//        paramMap.put( "phoneNumber", phoneNumber );
-//        ResponseResult result = restTemplate.getForObject( "http://service-verification-code/verify-code/generate", ResponseResult.class, paramMap );
 
         return result.getData().toString();
     }
