@@ -22,6 +22,8 @@
         <module>internal-common</module>
         <module>service-verification-code</module>
         <module>cloud-eureka</module>
+        <module>cloud-zuul</module>
+        <module>service-passenger-user</module>
     </modules>
 
 

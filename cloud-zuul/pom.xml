@@ -8,11 +8,13 @@
 		<version>2.3.0.RELEASE</version>
 		<relativePath/>
 	</parent>
-	<groupId>com.huihiu</groupId>
-	<artifactId>service-sms</artifactId>
+
+	<groupId>com.huihui</groupId>
+	<artifactId>cloud-zuul</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>service-sms</name>
-	<description>短信服务</description>
+	<name>cloud-zuul</name>
+	<description>API网关</description>
+
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -29,15 +31,10 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
+		<!--redis-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
 
 		<!--Eureka Client由于需要与Server进行HTTP交互，必须依赖web组件-->
@@ -47,12 +44,42 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.3</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-			<version>3.0.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
 		</dependency>
 
 	</dependencies>
+
 
 	<dependencyManagement>
 		<dependencies>

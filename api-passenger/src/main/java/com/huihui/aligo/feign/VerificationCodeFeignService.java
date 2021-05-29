@@ -1,4 +1,4 @@
-package com.huihui.aligo.service;
+package com.huihui.aligo.feign;
 
 import com.huihui.aligo.dto.ResponseResult;
 import com.huihui.aligo.dto.VerifyCodeResponse;
@@ -16,4 +16,9 @@ public interface VerificationCodeFeignService {
     @GetMapping("/verify-code/generate")
     ResponseResult<VerifyCodeResponse> getVerificationCode( @RequestParam("identity") int identity,
                                                                    @RequestParam("phoneNumber") String phoneNumber );
+
+    @GetMapping("/verify-code/verify")
+    ResponseResult<String> verify(@RequestParam("identity") int identity,
+                                  @RequestParam("phoneNumber") String phoneNumber,
+                                  @RequestParam("verifyCode")String verifyCode);
 }

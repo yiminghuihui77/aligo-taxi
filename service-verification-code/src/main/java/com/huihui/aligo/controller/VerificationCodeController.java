@@ -25,4 +25,11 @@ public class VerificationCodeController {
         return verificationService.generateCode( identity, phoneNumber );
     }
 
+    @GetMapping("/verify")
+    public ResponseResult<String> verify(@RequestParam("identity") int identity,
+                                         @RequestParam("phoneNumber") String phoneNumber,
+                                         @RequestParam("verifyCode") String verifyCode) {
+        return verificationService.verify( identity, phoneNumber, verifyCode );
+    }
+
 }
