@@ -6,6 +6,7 @@ import com.netflix.loadbalancer.AbstractLoadBalancerRule;
 import com.netflix.loadbalancer.ILoadBalancer;
 import com.netflix.loadbalancer.Server;
 import com.netflix.niws.loadbalancer.DiscoveryEnabledServer;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,6 +20,7 @@ import java.util.Map;
  * @author minghui.y
  * @create 2021-06-24 11:29 上午
  **/
+@Slf4j
 public class GrayRule extends AbstractLoadBalancerRule {
 
     @Autowired
@@ -34,22 +36,20 @@ public class GrayRule extends AbstractLoadBalancerRule {
 
     /**
      *
-     * @param o
+     * @param key
      * @return 返回的Server就是目标服务实例
      */
     @Override
-    public Server choose( Object o ) {
+    public Server choose( Object key ) {
 
-        System.out.println("ooo");
-
-
-        return null;
+        return this.choose( key, this.getLoadBalancer() );
     }
 
 
     public Server choose( Object key, ILoadBalancer loadBalancer ) {
 
-        //获取所有可达服务
+        log.info( "自定义IRule开始路由..." );
+        //获取所有可达服务：服务B-v1、服务B-v2...
         List<Server> reachableServers = loadBalancer.getReachableServers();
 
         //获取当前线程上下文中的 version

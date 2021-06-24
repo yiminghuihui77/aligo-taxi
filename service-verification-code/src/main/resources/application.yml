@@ -1,5 +1,5 @@
 server:
-  port: 8092
+  port: 8091
 
 spring:
   application:
@@ -29,7 +29,7 @@ eureka:
     hostname: service-verification-code
     prefer-ip-address: true
     metadata-map:
-      version: v2
+      version: v1
   client:
     service-url:
       defaultZone: http://eurekaOne:8888/eureka/

@@ -9,7 +9,16 @@
     RestTemplate & Feign调用  
 3、redis   
     存短信验证码、token   
-
+4、灰度发布   
+   场景一：用户端 -> 网关(ribbon) -> 服务  
+         定义zuul路由类型过滤器 +   RibbonFilterContextHolder.getCurrentContext().add( "version", version );
+   场景二：服务A(ribbon) -> 服务B
+         1、将http请求头中的version参数存储到ThreadLocal中
+         2、服务A端自定义ribbon IRule，获取当前线程上下文中的version
+            获取可达服务B的列表，获取每个Server的medata-map中定义的version
+            两version比较一致，则该Server为目标服务B
+         注意：服务A中指定@RibbonClient(name = "service-verification-code", configuration = RibbonConfig.class)
+              即对下游服务service-verification-code采取RibbonConfig中配置的路由策略
 
 
 > 功能模块  

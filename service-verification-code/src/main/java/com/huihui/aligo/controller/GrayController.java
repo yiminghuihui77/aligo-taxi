@@ -14,7 +14,7 @@ public class GrayController {
 
     @RequestMapping(value = "/getGrayVersion")
     public String serverToServerGray() {
-        return  "server to server gray: v2";
+        return  "server to server gray: v1";
     }
 
 
