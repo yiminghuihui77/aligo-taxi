@@ -1,5 +1,5 @@
 server:
-  port: 8092
+  port: 8093
 
 spring:
   application:
@@ -10,6 +10,8 @@ eureka:
     hostname: api-passenger
     #以IP地址注册到服务中心（否则报找不到服务错误）
     prefer-ip-address: true
+    metadata-map:
+      version: v1
   client:
     service-url:
       defaultZone: http://eurekaOne:8888/eureka/

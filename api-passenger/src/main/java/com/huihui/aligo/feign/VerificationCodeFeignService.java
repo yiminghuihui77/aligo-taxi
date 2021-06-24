@@ -21,4 +21,9 @@ public interface VerificationCodeFeignService {
     ResponseResult<String> verify(@RequestParam("identity") int identity,
                                   @RequestParam("phoneNumber") String phoneNumber,
                                   @RequestParam("verifyCode")String verifyCode);
+
+
+
+    @GetMapping("/gray/getGrayVersion")
+    String serverToServerGray();
 }
