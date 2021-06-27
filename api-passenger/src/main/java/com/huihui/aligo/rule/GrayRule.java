@@ -9,7 +9,6 @@ import com.netflix.niws.loadbalancer.DiscoveryEnabledServer;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
@@ -45,6 +44,10 @@ public class GrayRule extends AbstractLoadBalancerRule {
         return this.choose( key, this.getLoadBalancer() );
     }
 
+    public static void main( String[] args ) {
+        System.out.println("LB021301052104171549390001".hashCode() % 64);
+    }
+
 
     public Server choose( Object key, ILoadBalancer loadBalancer ) {
 
@@ -58,6 +61,9 @@ public class GrayRule extends AbstractLoadBalancerRule {
         if (paramMap != null && StringUtils.isNotBlank( paramMap.get( "version" ) )) {
             version = paramMap.get( "version" );
         }
+
+        //防止内存泄漏？
+        parameterThreadLocal.clear();
 
         //遍历可达服务，获取medata中的version
         for (Server o : reachableServers) {

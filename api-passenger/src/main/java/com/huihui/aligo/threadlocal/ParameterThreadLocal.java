@@ -25,5 +25,8 @@ public class ParameterThreadLocal {
     }
 
 
+    public void clear() {
+        paramThreadLocal.remove();
+    }
 
 }
