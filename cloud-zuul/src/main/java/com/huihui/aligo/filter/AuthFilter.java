@@ -93,7 +93,7 @@ public class AuthFilter extends ZuulFilter {
         }
 
 
-        //继续执行后续过滤器，但是不向后面的服务转发
+        //继续执行后续过滤器，但是不向后面的服务转发（ZuulFilter的shouldFilter方法有针对此字段的逻辑）
         requestContext.setSendZuulResponse( false );
         requestContext.setResponseStatusCode( HttpStatus.UNAUTHORIZED.value() );
         requestContext.setResponseBody( "auth failed!" );

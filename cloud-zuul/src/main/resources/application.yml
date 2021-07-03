@@ -41,3 +41,21 @@ eureka:
 logging:
   level:
     com.netflix: debug
+
+#zuul网关配置
+zuul:
+  #什么都不配，则所有请求头都透传到后面服务；源码默认：Cookie", "Set-Cookie", "Authorization" 三个字段不透传
+  sensitive-headers:
+  #几种路由配置
+  routes:
+    #带"/send-forward/路径的请求，分发到当前项目的myController接口（SendForwardFilter）
+    send-forward-demo:
+      path: /send-forward/**
+      url: forward:/myController
+    #带"/verify-code/"路径的请求，分发到指定serviceId的微服务中（RibbonRoutingFilter）
+    service-verification-code: /verify-code/**
+    #带"/simple-host/"路径的请求，分发到http://localhost:8080/**，这种方式不会作为HystrixCommand执行，也不能用ribbon负载均衡（SimpleHostRoutingFilter）
+    simple-host-demo:
+      path: /simple-host/**
+      url: http://localhost:8080/
+
