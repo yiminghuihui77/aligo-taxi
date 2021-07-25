@@ -38,9 +38,9 @@ eureka:
     registry-fetch-interval-seconds: 30
 
 #日志级别
-logging:
-  level:
-    com.netflix: debug
+#logging:
+#  level:
+#    com.netflix: debug
 
 #zuul网关配置
 zuul:
