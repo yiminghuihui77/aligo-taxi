@@ -5,6 +5,11 @@
 2、SpringCloud   
     eureka server & client(源码阅读&调优)  
     zuul  
+      pre | route✨ | post | error  
+      route类型过滤器的三种场景：  
+      1、路由到微服务  
+      2、路由到具体地址  
+      3、路由到zuul自己的接口  
     ribbon  
     RestTemplate & Feign调用  
 3、redis   

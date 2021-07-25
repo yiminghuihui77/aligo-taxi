@@ -4,10 +4,7 @@ import com.huihiu.aligo.service.SmsService;
 import com.huihui.aligo.dto.ResponseResult;
 import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author minghui.y
@@ -28,5 +25,14 @@ public class SmsController {
    }
 
 
+   @GetMapping("/sms-test33")
+   public String helloSms() {
+      return "sms-test33";
+   }
+
+   @GetMapping("/targetHost")
+   public String helloTargetHost() {
+      return "hello targetHost";
+   }
 
 }

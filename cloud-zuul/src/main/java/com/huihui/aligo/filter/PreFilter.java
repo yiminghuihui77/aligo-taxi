@@ -3,37 +3,24 @@ package com.huihui.aligo.filter;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
-import io.jmnarloch.spring.cloud.ribbon.support.RibbonFilterContextHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
-import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
- * 灰度过滤器
- *
+ * 验证一个问题：
+ *  请求地址：zuulHost:zuulPort/xxx是不会走到此"过滤器"的，实际上没走到ZuulServlet
+ *  ZuulFilter并非传统意义上的javax.servlet.Filter，而只是ZuulServlet流程中的一个执行环节
  * @author minghui.y
- * @create 2021-06-23 3:08 下午
+ * @create 2021-07-04 9:27 下午
  **/
 //@Component
 @Slf4j
-public class GrayFilter extends ZuulFilter {
-
-    private static final Map<String, String> userVersionMap = new HashMap<>(2);
-
-    static {
-        userVersionMap.put( "1", "v1" );
-        userVersionMap.put( "2", "v2" );
-    }
-
-
+public class PreFilter extends ZuulFilter {
     @Override
     public String filterType() {
-        //路由类型
-        return FilterConstants.ROUTE_TYPE;
+        return FilterConstants.PRE_TYPE;
     }
 
     @Override
@@ -56,14 +43,12 @@ public class GrayFilter extends ZuulFilter {
         log.info( String.format( "uri: %s >>> method: %s",
                 request.getRequestURL().toString(), request.getMethod() ) );
 
-        //请求头中获取userId
-        String userId = request.getHeader( "userId" );
+        //请求url
+        String requestURI = request.getRequestURI();
 
-        //TODO 查询数据库，获取当前用户可范访问的版本号
-        String version = userVersionMap.get( userId );
-
-        //当前请求会路由到指定version的服务！
-        RibbonFilterContextHolder.getCurrentContext().add( "version", version );
+        if (requestURI.contains( "preFilter" )) {
+            System.out.println("pre filter 能拦截所有请求？");
+        }
 
 
         return null;

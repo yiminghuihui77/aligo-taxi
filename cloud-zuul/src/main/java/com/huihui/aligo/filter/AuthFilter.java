@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author minghui.y
  * @create 2021-05-29 3:36 下午
  **/
-@Component
+//@Component
 @Slf4j
 public class AuthFilter extends ZuulFilter {
 
