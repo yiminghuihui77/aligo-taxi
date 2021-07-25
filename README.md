@@ -28,7 +28,14 @@
               即对下游服务service-verification-code采取RibbonConfig中配置的路由策略   
          相关类：
              A: api-passenger项目：  VersionAnnotation、VersionAspect、RibbonConfig、GrayRule、GrayController  
-             B: service-verification-code项目：  GrayController   
+             B: service-verification-code项目：  GrayController  
+5、限流
+   1）、网关层限流  
+          使用Guava的RateLimiter令牌桶实现限流（RateLimiterFilter）  
+          使用alibaba的sentinel实现限流（SentinelRateFilter）
+   2）、微服务接口层面限流  
+           Guava的RateLimiter + AOP切面实现限流  
+           sentinel的接口注解实现:  @SentinelResource
 
 
 > 功能模块  

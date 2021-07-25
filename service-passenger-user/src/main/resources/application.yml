@@ -26,7 +26,7 @@ eureka:
     prefer-ip-address: true
   client:
     service-url:
-      defaultZone: http://eurekaOne:8888/eureka/
+      defaultZone: http://localhost:8888/eureka/
       #是否从从注册中心获取服务信息
     fetch-registry: true
     #是否注册到注册中心

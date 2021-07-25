@@ -19,6 +19,13 @@ public class VerificationCodeController {
     private VerificationService verificationService;
 
 
+    @GetMapping("/sayHello")
+    public String sayHello() {
+        System.out.println("verify-code service visited...");
+        return "I am vierify-code service";
+    }
+
+
     @GetMapping("/generate")
     public ResponseResult<VerifyCodeResponse> getVerificationCode( @RequestParam("identity") int identity,
                                                                    @RequestParam("phoneNumber") String phoneNumber) {

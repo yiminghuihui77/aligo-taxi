@@ -9,7 +9,8 @@ import java.io.IOException;
 
 /**
  * 自定义HttpSerlver
- *
+ *  postman 访问 http://localhsot:8889/self
+ *  @WebServlet + @ServletComponentScan
  * @author minghui.y
  * @create 2021-07-24 10:50 上午
  **/

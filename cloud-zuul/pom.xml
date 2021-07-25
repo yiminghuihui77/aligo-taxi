@@ -24,6 +24,19 @@
 
 	<dependencies>
 
+		<!--sentinel服务保护-->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-alibaba-sentinel</artifactId>
+			<version>0.2.2.RELEASE</version>
+		</dependency>
+
+		<!--健康检查-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
 		<!--ribbon 灰度发布，zuul中转发的集群服务的筛选-->
 		<dependency>
 			<groupId>io.jmnarloch</groupId>

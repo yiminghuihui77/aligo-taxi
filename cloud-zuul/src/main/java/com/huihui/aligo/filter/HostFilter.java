@@ -17,7 +17,7 @@ import java.net.URL;
  * @create 2021-07-04 8:57 下午
  **/
 @Slf4j
-@Component
+//@Component
 public class HostFilter extends ZuulFilter {
     @Override
     public String filterType() {
