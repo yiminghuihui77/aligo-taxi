@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.huihui.aligo.mapper.ApiPassengerMapper">
+
+
+    <insert id="insert" parameterType="com.huihui.aligo.model.ApiPassengerModel" keyColumn="id" useGeneratedKeys="true">
+        insert into t_api_passenger
+        (
+         id,
+         identity,
+         phone_number,
+         create_time
+        ) values (
+        #{id},
+        #{identity},
+        #{phoneNumber},
+        #{createTime}
+        )
+    </insert>
+
+
+</mapper>

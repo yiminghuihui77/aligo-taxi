@@ -1,8 +1,7 @@
-package com.huihiu.aligo.controller;
+package com.huihui.aligo.controller;
 
-import com.huihiu.aligo.service.SmsService;
+import com.huihui.aligo.service.SmsService;
 import com.huihui.aligo.dto.ResponseResult;
-import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +21,13 @@ public class SmsController {
                                           @RequestParam("verifyCode") String verifyCode) {
 
       return smsService.sendSms( phoneNumber, verifyCode );
+   }
+
+   @RequestMapping(value = "/sendSms4Seata", method = RequestMethod.GET)
+   public ResponseResult<String> sendSms4Seata( @RequestParam("phoneNumber") String phoneNumber,
+                                          @RequestParam("verifyCode") String verifyCode) {
+
+      return smsService.sendSms4Seata( phoneNumber, verifyCode );
    }
 
 

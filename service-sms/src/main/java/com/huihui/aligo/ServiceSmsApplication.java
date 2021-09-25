@@ -1,4 +1,4 @@
-package com.huihiu.aligo;
+package com.huihui.aligo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

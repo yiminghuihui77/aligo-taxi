@@ -5,10 +5,14 @@ import com.huihui.aligo.dto.ResponseResult;
 import com.huihui.aligo.dto.VerifyCodeResponse;
 import com.huihui.aligo.feign.SmsFeignService;
 import com.huihui.aligo.feign.VerificationCodeFeignService;
+import com.huihui.aligo.mapper.ApiPassengerMapper;
+import com.huihui.aligo.model.ApiPassengerModel;
 import com.huihui.aligo.service.VerificationCodeService;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * @author minghui.y
@@ -21,6 +25,8 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
     private VerificationCodeFeignService verificationCodeFeignService;
     @Resource
     private SmsFeignService smsFeignService;
+    @Resource
+    private ApiPassengerMapper apiPassengerMapper;
 
     /**
      * 调用service-verification-code服务生成验证码(存到Redis中，过期时间2分钟)
@@ -62,5 +68,20 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
     public ResponseResult<String> verify( int identity, String phoneNumber, String verifyCode ) {
 
         return verificationCodeFeignService.verify( identity, phoneNumber, verifyCode );
+    }
+
+    @Override
+    @GlobalTransactional(rollbackFor = Exception.class, timeoutMills = 120 * 1000)
+    public ResponseResult<VerifyCodeResponse> getVerifyCode4Seata( int identity, String phoneNumber ) {
+
+        //执行本地DB
+        ApiPassengerModel model = new ApiPassengerModel();
+        model.setIdentity( identity );
+        model.setPhoneNumber( phoneNumber );
+        model.setCreateTime( new Date() );
+        apiPassengerMapper.insert( model );
+
+        //调用service-verification-code服务生成验证码
+        return verificationCodeFeignService.getVerificationCode4Seata( identity, phoneNumber );
     }
 }

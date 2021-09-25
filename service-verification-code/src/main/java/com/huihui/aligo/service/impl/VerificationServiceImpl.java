@@ -2,12 +2,17 @@ package com.huihui.aligo.service.impl;
 
 import com.huihui.aligo.dto.ResponseResult;
 import com.huihui.aligo.dto.VerifyCodeResponse;
+import com.huihui.aligo.feign.SmsFeignService;
+import com.huihui.aligo.mapper.VerifyCodeMapper;
+import com.huihui.aligo.model.VerifyCodeModel;
 import com.huihui.aligo.service.VerificationService;
 import com.huihui.aligo.util.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
+
+import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * @author minghui.y
@@ -20,6 +25,10 @@ public class VerificationServiceImpl implements VerificationService {
 
     @Autowired
     private RedisUtil redisUtil;
+    @Resource
+    private SmsFeignService smsFeignService;
+    @Resource
+    private VerifyCodeMapper verifyCodeMapper;
 
     /**
      * 生成验证码
@@ -38,6 +47,30 @@ public class VerificationServiceImpl implements VerificationService {
         redisUtil.set( phoneNumber + "-" + identity, code, 60 * 2 );
 
         log.info( "为手机号：{} 生成验证码：{}", phoneNumber, code );
+
+        return ResponseResult.success( new VerifyCodeResponse(code) );
+    }
+
+    @Override
+    public ResponseResult<VerifyCodeResponse> generateCode4Seata( int identity, String phoneNumber ) {
+
+        //生成6位验证码
+        String code = String.valueOf((int)((Math.random()*9+1)*Math.pow(10,5)));
+        log.info( "为手机号：{} 生成验证码：{}", phoneNumber, code );
+
+        //本地DB操作
+        VerifyCodeModel model = new VerifyCodeModel();
+        model.setIdentity( identity );
+        model.setPhoneNumber( phoneNumber );
+        model.setVerifyCode( code );
+        model.setCreateTime( new Date() );
+        verifyCodeMapper.insert( model );
+
+        //调用service-sms
+        final ResponseResult<String> smsResult = smsFeignService.sendSms4Seata( phoneNumber, code );
+        log.info( "service-verification-code 调用service-sms返回结果：{}", smsResult.getMessage() );
+
+        int temp = 1 / identity;
 
         return ResponseResult.success( new VerifyCodeResponse(code) );
     }

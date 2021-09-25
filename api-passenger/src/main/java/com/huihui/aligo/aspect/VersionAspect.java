@@ -20,8 +20,8 @@ import java.util.Map;
  * @author minghui.y
  * @create 2021-06-24 6:46 下午
  **/
-@Component
-@Aspect
+//@Component
+//@Aspect
 @Slf4j
 public class VersionAspect {
 

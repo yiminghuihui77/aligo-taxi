@@ -11,6 +11,8 @@ public interface VerificationService {
 
     ResponseResult<VerifyCodeResponse> generateCode( int identity, String phoneNumber);
 
+    ResponseResult<VerifyCodeResponse> generateCode4Seata( int identity, String phoneNumber);
+
 
     ResponseResult<String> verify(int identity, String phoneNumber, String verifyCode);
 }

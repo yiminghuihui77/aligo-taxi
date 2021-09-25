@@ -2,8 +2,29 @@ server:
   port: 8093
 
 spring:
+  #seata配置
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: huihui_test_tx_group
   application:
     name: api-passenger
+  #数据源配置
+  datasource:
+    druid:
+      name: mysql
+      url: jdbc:mysql://localhost:3306/seata-server
+      username: root
+      password: ymh96122
+      driver-class-name: com.mysql.jdbc.Driver
+      max-active: 100
+      initial-size: 1
+      min-idle: 1
+      max-wait: 60000
+
+
+
+
 
 eureka:
   instance:
@@ -21,4 +42,9 @@ eureka:
     register-with-eureka: true
     #定时从注册中心拉取注册表的间隔，默认30s
     registry-fetch-interval-seconds: 30
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.huihui.aligo.model
 

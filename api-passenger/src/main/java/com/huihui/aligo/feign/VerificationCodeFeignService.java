@@ -15,7 +15,11 @@ public interface VerificationCodeFeignService {
 
     @GetMapping("/verify-code/generate")
     ResponseResult<VerifyCodeResponse> getVerificationCode( @RequestParam("identity") int identity,
-                                                                   @RequestParam("phoneNumber") String phoneNumber );
+                                                            @RequestParam("phoneNumber") String phoneNumber );
+
+    @GetMapping("/verify-code/generate4Seata")
+    ResponseResult<VerifyCodeResponse> getVerificationCode4Seata( @RequestParam("identity") int identity,
+                                                            @RequestParam("phoneNumber") String phoneNumber );
 
     @GetMapping("/verify-code/verify")
     ResponseResult<String> verify(@RequestParam("identity") int identity,

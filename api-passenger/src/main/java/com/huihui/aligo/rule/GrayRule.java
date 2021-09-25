@@ -44,10 +44,6 @@ public class GrayRule extends AbstractLoadBalancerRule {
         return this.choose( key, this.getLoadBalancer() );
     }
 
-    public static void main( String[] args ) {
-        System.out.println("LB021301052104171549390001".hashCode() % 64);
-    }
-
 
     public Server choose( Object key, ILoadBalancer loadBalancer ) {
 

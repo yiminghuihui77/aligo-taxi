@@ -1,6 +1,7 @@
 package com.huihui.aligo.service;
 
 import com.huihui.aligo.dto.ResponseResult;
+import com.huihui.aligo.dto.VerifyCodeResponse;
 
 /**
  * 验证码服务
@@ -26,5 +27,13 @@ public interface VerificationCodeService {
      * @return
      */
     ResponseResult<String> verify(int identity, String phoneNumber, String verifyCode);
+
+    /**
+     * 获取短信验证码
+     * @param identity
+     * @param phoneNumber
+     * @return
+     */
+    ResponseResult<VerifyCodeResponse> getVerifyCode4Seata( int identity, String phoneNumber);
 
 }

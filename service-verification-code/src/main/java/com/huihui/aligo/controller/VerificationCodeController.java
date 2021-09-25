@@ -32,6 +32,13 @@ public class VerificationCodeController {
         return verificationService.generateCode( identity, phoneNumber );
     }
 
+
+    @GetMapping("/generate4Seata")
+    public ResponseResult<VerifyCodeResponse> getVerificationCode4Seata(@RequestParam("identity") int identity,
+                                                                        @RequestParam("phoneNumber") String phoneNumber) {
+        return verificationService.generateCode4Seata( identity, phoneNumber );
+    }
+
     @GetMapping("/verify")
     public ResponseResult<String> verify(@RequestParam("identity") int identity,
                                          @RequestParam("phoneNumber") String phoneNumber,

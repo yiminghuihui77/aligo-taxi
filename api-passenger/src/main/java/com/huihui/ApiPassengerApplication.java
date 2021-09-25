@@ -15,7 +15,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableFeignClients
-@RibbonClient(name = "service-verification-code", configuration = RibbonConfig.class)
+//@RibbonClient(name = "service-verification-code", configuration = RibbonConfig.class)
 public class ApiPassengerApplication {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger( ApiPassengerApplication.class );

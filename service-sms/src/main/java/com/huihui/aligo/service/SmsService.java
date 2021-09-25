@@ -1,4 +1,4 @@
-package com.huihiu.aligo.service;
+package com.huihui.aligo.service;
 
 import com.huihui.aligo.dto.ResponseResult;
 
@@ -15,4 +15,7 @@ public interface SmsService {
      * @return
      */
     ResponseResult<String> sendSms(String phoneNumber, String verifyCode);
+
+
+    ResponseResult<String> sendSms4Seata(String phoneNumber, String verifyCode);
 }
