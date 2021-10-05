@@ -35,7 +35,11 @@
           使用alibaba的sentinel实现限流（SentinelRateFilter）
    2）、微服务接口层面限流  
            Guava的RateLimiter + AOP切面实现限流  
-           sentinel的接口注解实现:  @SentinelResource
+           sentinel的接口注解实现:  @SentinelResource  
+7、分布式事务解决方案
+  1）、事务消息RocketMQ   
+    api-passenger服务：RocketMqTransactionController -> OrderBusinessHandler  发送消息  
+    service-verification-code服务： OrderTransactionConsumer -> OrderListener 监听消息  
 
 
 > 功能模块  
